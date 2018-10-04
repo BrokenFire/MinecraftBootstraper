@@ -29,7 +29,7 @@ plugins {
 
 def versionObj = new Version(major: 1, minor: 0, revision: 0)
 
-archivesBaseName = "MCBootstarper"
+archivesBaseName = "MCBootstarpper"
 version = "$versionObj"
 
 
@@ -65,7 +65,7 @@ jar {
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     delete "${buildDir}/libs/*"
-    baseName = 'MCBootstarper'
+    baseName = 'MCBootstarpper'
 }
 
 
