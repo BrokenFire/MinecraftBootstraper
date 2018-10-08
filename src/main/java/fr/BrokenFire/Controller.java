@@ -171,8 +171,11 @@ public class Controller {
             list.add("-Duser.dir="+Main.MC_DIR.getAbsolutePath());
             list.add("-jar");
             list.add(Main.MC_DIR.getAbsolutePath() + "/launcher.jar");
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.directory(Main.MC_DIR);
+            builder.command(list);
             //final Process command = re.exec(cmdString, args.toArray(new String[0]));
-            Process command = re.exec(list.toArray(new String[0]));
+            Process command = builder.start();
             this.error = new BufferedReader(new InputStreamReader(command.getErrorStream()));
             this.op = new BufferedReader(new InputStreamReader(command.getInputStream()));
             // Wait for the application to Finish
