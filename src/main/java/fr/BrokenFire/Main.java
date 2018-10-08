@@ -14,7 +14,7 @@ import java.io.File;
 public class Main extends Application {
 
 
-    static File MC_DIR = new File(System.getProperty("user.home") + "/.MCLauncher/");
+    static File MC_DIR = new File(OsIdentifier.getInstallPath());
     static String UPDATE_URL = "https://jenkins.seb6596.ovh/job/MC/job/MCLauncher/lastStableBuild/";
 
 
