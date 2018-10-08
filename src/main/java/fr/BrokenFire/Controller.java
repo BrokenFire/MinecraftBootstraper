@@ -168,6 +168,7 @@ public class Controller {
             Runtime re = Runtime.getRuntime();
             List<String> list = new ArrayList<>();
             list.add("java");
+            list.add("-Duser.dir="+Main.MC_DIR.getAbsolutePath());
             list.add("-jar");
             list.add(Main.MC_DIR.getAbsolutePath() + "/launcher.jar");
             //final Process command = re.exec(cmdString, args.toArray(new String[0]));
