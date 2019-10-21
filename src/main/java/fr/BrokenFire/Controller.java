@@ -167,7 +167,8 @@ public class Controller {
         public void launch() throws IOException, InterruptedException {
             Runtime re = Runtime.getRuntime();
             List<String> list = new ArrayList<>();
-            list.add("java");
+            String javaHome = System.getProperty("java.home");
+            list.add(javaHome + "/bin/java");
             list.add("-Duser.dir="+Main.MC_DIR.getAbsolutePath());
             list.add("-jar");
             list.add(Main.MC_DIR.getAbsolutePath() + "/launcher.jar");
