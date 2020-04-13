@@ -25,3 +25,10 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2-preview
+      with:
+        # Artifact name
+        name: jar
+        # Directory containing files to upload
+        path: build/libs/
