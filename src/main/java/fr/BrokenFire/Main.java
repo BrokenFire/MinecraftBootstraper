@@ -15,7 +15,7 @@ public class Main extends Application {
 
 
     static File MC_DIR = new File(OsIdentifier.getInstallPath());
-    static String UPDATE_URL = "https://jenkins.seb6596.ovh/job/MC/job/MCLauncher/lastStableBuild/";
+    static String UPDATE_URL = "https://api.github.com/repos/Sebclem/MCLauncher/releases/latest";
 
 
     @Override

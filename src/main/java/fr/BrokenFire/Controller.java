@@ -78,13 +78,13 @@ public class Controller {
         public void run() {
             try {
                 SaveUtils saveUtils = SaveUtils.getINSTANCE();
-                String dl = get(Main.UPDATE_URL + "api/json?tree=artifacts[*]");
+                String dl = get(Main.UPDATE_URL);
                 GsonBuilder gsonBuilder = new GsonBuilder();
-                JenkinsJson json = gsonBuilder.create().fromJson(dl, JenkinsJson.class);
-                if(saveUtils.needDownload(json.artifacts.get(0).fileName)){
+                GithubJson json = gsonBuilder.create().fromJson(dl, GithubJson.class);
+                if(saveUtils.needDownload(json.tag_name)){
                     System.out.println("Need Update");
 
-                    Downloader downloader = new Downloader(new URL(Main.UPDATE_URL + "artifact/" + json.artifacts.get(0).relativePath), Main.MC_DIR.getAbsolutePath() + "/launcher.jar");
+                    Downloader downloader = new Downloader(new URL(json.assets.get(0).browser_download_url), Main.MC_DIR.getAbsolutePath() + "/launcher.jar");
                     downloader.addObserver(new DlListenner());
 
                     while (downloader.getStatus() == Downloader.DOWNLOADING) {
@@ -92,7 +92,7 @@ public class Controller {
                     }
                     if (downloader.getStatus() != Downloader.COMPLETE)
                         throw new DownloadFailException();
-                    saveUtils.save("launcher_version", json.artifacts.get(0).fileName);
+                    saveUtils.save("launcher_version", json.tag_name);
 
 
                 }
@@ -202,10 +202,10 @@ public class Controller {
                 }
             } catch (final IOException e) {
             }
-            String output = "";
+            StringBuilder output = new StringBuilder();
             try {
                 while((line = this.op.readLine()) != null) {
-                    output = output + "\n" + line;
+                    output.append("\n").append(line);
                 }
             } catch (final IOException e) {
             }
